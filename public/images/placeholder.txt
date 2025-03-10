@@ -1,0 +1,11 @@
+This directory is for portfolio images.
+
+Recommended images to add:
+1. A professional headshot or profile picture
+2. Project screenshots
+3. Background images or patterns for the hero section
+4. Icons for skills or technologies
+
+The design references in CONTEXT.md mention these images:
+- Image 1: Homepage with "DIVIK DHIMAN" prominently displayed
+- Image 2: Four sections (About, Experience, Projects, Contact) 

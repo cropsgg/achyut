@@ -1,0 +1,782 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+:root {
+  --background-light: #EEE5DA;
+  --background-dark: #262424;
+  --text-color: #262424;
+  --accent-color: #262424;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: var(--text-color);
+  background: var(--background-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#__next {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@layer utilities {
+  .rounded-4xl {
+    border-radius: 1.5rem;
+    transition: all 0.3s ease;
+    background-image: 
+      linear-gradient(to bottom right, rgba(255, 255, 255, 0.03), transparent),
+      linear-gradient(to top left, rgba(0, 0, 0, 0.02), transparent);
+    background-attachment: fixed;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+.bg-background {
+  background-color: var(--background-light);
+  color: var(--text-color);
+}
+
+.text-primary {
+  color: var(--text-color);
+}
+
+/* Edge navigation buttons - revised to match image 2 */
+.nav-pill {
+  position: fixed;
+  background-color: #EEE5DA;
+  color: #262424;
+  padding: 14px 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-pill:hover {
+  background-color: #f5f0e8;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transform: scale(1.05);
+}
+
+.nav-pill.active {
+  background-color: #f5f0e8;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.nav-pill-top {
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 60px;
+  border-radius: 30px;
+}
+
+.nav-pill-top:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+
+.nav-pill-right {
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  height: 85%;
+  width: 60px;
+  border-radius: 30px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform-origin: right center;
+}
+
+.nav-pill-right:hover {
+  transform: translateY(-50%) translateX(-5px) scale(1.05);
+}
+
+.nav-pill-left {
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  height: 85%;
+  width: 60px;
+  border-radius: 30px;
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  transform-origin: left center;
+}
+
+.nav-pill-left:hover {
+  transform: translateY(-50%) translateX(5px) scale(1.05);
+}
+
+.nav-pill-bottom {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 60px;
+  border-radius: 30px;
+}
+
+.nav-pill-bottom:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+
+/* Content container - enlarged to match image 2 */
+.content-container {
+  width: 90vw;
+  max-width: 1400px;
+  height: 70vh;
+  margin: auto;
+  background-color: #EEE5DA;
+  border-radius: 2rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  z-index: 10;
+  position: relative;
+}
+
+/* Home button - updated to match nav pills */
+.home-button {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 60px;
+  background-color: #EEE5DA;
+  color: #262424;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 30px;
+}
+
+.home-button:hover {
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  background-color: #f5f0e8;
+}
+
+.profile-content {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  padding: 2.5rem;
+  height: 100%;
+  align-items: center;
+}
+
+.profile-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-name {
+  font-size: 4rem;
+  line-height: 1;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.profile-title {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.profile-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-pill {
+  background-color: var(--background-dark);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  max-height: 400px;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Section content styling - revised to match */
+.section-content {
+  background-color: #262424;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.section-inner {
+  background-color: #EEE5DA;
+  max-width: 1400px;
+  width: 90%;
+  height: 70vh;
+  margin: 0 auto;
+  border-radius: 2rem;
+  padding: 3.5rem;
+  position: relative;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.section-title {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  color: #262424;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.section-heading {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .profile-content {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+  
+  .profile-name {
+    font-size: 3rem;
+  }
+  
+  .nav-pill {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .nav-pill-left {
+    left: 10px;
+    width: 50px;
+    height: 80%;
+  }
+  
+  .nav-pill-right {
+    right: 10px;
+    width: 50px;
+    height: 80%;
+  }
+  
+  .nav-pill-top {
+    top: 10px;
+    width: 90%;
+    height: 50px;
+  }
+  
+  .nav-pill-bottom, .home-button {
+    height: 50px;
+    width: 90%;
+    bottom: 10px;
+  }
+  
+  .content-container, .section-inner {
+    width: 95vw;
+    height: 75vh;
+    padding: 1.5rem;
+  }
+  
+  .section-inner {
+    padding: 2rem 1.5rem;
+  }
+  
+  /* Improve readability on mobile */
+  .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .section-heading {
+    font-size: 1.5rem;
+  }
+}
+
+/* Existing useful styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Custom font for the headings to match the Figma design */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Arial Black', 'Helvetica Black', 'Impact', sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Section panel titles - specifically modify styling for section headings */
+.bg-background h2 {
+  letter-spacing: 0.08em;
+  font-weight: 900;
+  font-stretch: expanded;
+  color: #111111; /* Darker text for better contrast */
+  text-shadow: 0.5px 0.5px 0px rgba(0,0,0,0.05); /* Subtle text shadow for better readability */
+}
+
+/* Full-page section styling */
+section, .section-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-margin-top: 2rem;
+}
+
+/* Panel styling */
+.bg-background {
+  background-color: #E6E6E6;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background-image: 
+    linear-gradient(to bottom right, rgba(255, 255, 255, 0.03), transparent),
+    linear-gradient(to top left, rgba(0, 0, 0, 0.02), transparent);
+  background-attachment: fixed;
+}
+
+/* Add edge detection classes */
+.edge-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 10;
+}
+
+.edge-right {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 100%;
+  z-index: 10;
+}
+
+.edge-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 10;
+}
+
+.edge-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 100%;
+  z-index: 10;
+}
+
+/* Edge hover animation */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Custom scrollbar for the dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* General cursor styling */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Grid panel styling */
+.md\:col-span-1, .md\:col-span-3 {
+  position: relative;
+  overflow: hidden;
+  background-color: #E6E6E6;
+}
+
+/* Clickable panels styling */
+.cursor-pointer {
+  transition: all 0.3s ease;
+}
+
+.cursor-pointer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation corner indicator styling */
+.corner-indicator {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Edge hover detection zones */
+.edge-hover-zone {
+  position: fixed;
+  z-index: 5;
+  transition: background-color 0.3s ease;
+}
+
+.edge-hover-zone:hover {
+  background-color: rgba(139, 92, 246, 0.1); /* Subtle highlight with accent color */
+}
+
+.edge-hover-zone-top {
+  top: 0;
+  left: 33%;
+  width: 34%;
+  height: 40px;
+}
+
+.edge-hover-zone-bottom {
+  bottom: 0;
+  left: 33%;
+  width: 34%;
+  height: 40px;
+}
+
+.edge-hover-zone-left {
+  top: 33%;
+  left: 0;
+  width: 40px;
+  height: 34%;
+}
+
+.edge-hover-zone-right {
+  top: 33%;
+  right: 0;
+  width: 40px;
+  height: 34%;
+}
+
+/* Edge Hover Effects */
+.transform {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.transform:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Make edges more prominent on hover */
+.transform.-translate-y-1:hover, 
+.transform.translate-y-1:hover, 
+.transform.-translate-x-1:hover,
+.transform.translate-x-1:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Section heading styles */
+h2.text-3xl, h2.text-5xl {
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.05em;
+}
+
+/* Profile image hover effect */
+.bg-gray-300 {
+  transition: transform 0.3s ease;
+}
+
+.bg-gray-300:hover {
+  transform: scale(1.02);
+}
+
+/* Skill tags styling */
+.bg-black {
+  transition: all 0.2s ease;
+}
+
+.bg-black:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Add subtle grid line decoration */
+.grid {
+  position: relative;
+}
+
+.grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  z-index: -1;
+  opacity: 0.5;
+  pointer-events: none;
+  border-radius: 1.5rem;
+}
+
+/* Improve mobile layout */
+@media (max-width: 768px) {
+  .gap-3 {
+    gap: 0.5rem;
+  }
+  
+  .p-4 {
+    padding: 0.75rem;
+  }
+}
+
+/* Content block hover effects */
+.content-block {
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.content-inner {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.content-block:hover .content-inner {
+  transform: translateY(-8px);
+}
+
+/* Add subtle touch interaction */
+.content-block:active .content-inner {
+  transform: translateY(-4px);
+  transition: transform 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/* Add hover indicator */
+.content-block::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.1), transparent);
+  transition: height 0.3s ease;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.content-block:hover::after {
+  height: 100%;
+  opacity: 1;
+}
+
+/* Custom hover styles for specific directions */
+.content-block:hover:has(.transform.-translate-y-1) .content-inner {
+  transform: translateY(-12px);
+}
+
+.content-block:hover:has(.transform.translate-y-1) .content-inner {
+  transform: translateY(8px);
+}
+
+.content-block:hover:has(.transform.-translate-x-1) .content-inner {
+  transform: translateX(-8px);
+}
+
+.content-block:hover:has(.transform.translate-x-1) .content-inner {
+  transform: translateX(8px);
+}
+
+/* Center block specific hover */
+.content-block:has(.grid.content-inner):hover .content-inner {
+  transform: translateY(-5px) scale(1.02);
+}
+
+/* Zoom effect styles */
+.zoomed-view {
+  overflow: hidden;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+.fade-out {
+  animation: fadeOut 1s ease forwards;
+}
+
+/* Custom name styling for zoomed view */
+.text-7xl {
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* Enhance block shadows for depth */
+.content-block {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Add subtle background texture */
+.bg-background {
+  background-image: 
+    linear-gradient(to bottom right, rgba(255, 255, 255, 0.03), transparent),
+    linear-gradient(to top left, rgba(0, 0, 0, 0.02), transparent);
+  background-attachment: fixed;
+}
+
+/* Section body content styling */
+.section-body {
+  height: calc(100% - 7rem);
+  overflow-y: auto;
+  padding-right: 1rem;
+  color: #262424;
+  line-height: 1.6;
+}
+
+.section-body p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.section-heading {
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+  margin-top: 2rem;
+  color: #262424;
+  font-weight: 700;
+}
+
+/* Custom scrollbar for section content */
+.section-body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.section-body::-webkit-scrollbar-track {
+  background: rgba(238, 229, 218, 0.4);
+  border-radius: 10px;
+}
+
+.section-body::-webkit-scrollbar-thumb {
+  background: rgba(38, 36, 36, 0.3);
+  border-radius: 10px;
+}
+
+.section-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(38, 36, 36, 0.5);
+}
+
+/* Experience text rotation */
+.experience-text {
+  transform: rotateY(180deg);
+  display: inline-block;
+} 
